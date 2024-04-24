@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ClimaTempo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/static/css/style.css" />
+</head>
+<body>
+    <div class="big-box">
+        <form hx-get="/" hx-target="#weather-info" hx-swap="outerHTML">
+            <input type="text" class="input-city" name="city" placeholder="DIGITE UMA CIDADE..." />
+            <button class="search-button" type="submit">
+                <img class="search-img" alt="search" src="https://www.svgrepo.com/show/474980/search.svg" />
+            </button>
+        </form>
+        {{ if .HasData }}
+        <div class="mid-box" id="weather-info">
+            <h2 class="city">Tempo em {{.Name }}:</h2>
+            <p class="temperature">{{.Main.Celsius}}°C</p>
+            <p class="humdity">Umidade: {{.Main.Humidity}}%</p>
+            <div class="small-box">
+                {{ range .Weather }}
+                <img class="previsao-img" alt="weather-icon" src="https://openweathermap.org/img/w/{{ .Icon }}.png" />
+                <p class="previsao-txt">{{ .Description }}</p>
+                {{ end }}
+            </div>
+        </div>
+        {{ end }}
+    </div>
+</body>
+</html>
