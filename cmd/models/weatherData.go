@@ -25,7 +25,6 @@ type WeatherData struct {
 	Weather []struct {
 		Description string `json:"description"`
 		Icon string `json:"icon"`
-	} `json:"weather"`
-	HasData bool 
+	} `json:"weather"` 
 }
 

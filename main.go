@@ -26,10 +26,10 @@ func main() {
 		templates: template.Must(template.ParseGlob("web/templates/*.html")),
 	  }
 
-	e.GET("/", handlers.GetCity) //TEMPLATE RENDER
+	e.GET("/getweather/:city", handlers.GetWheater) //TEMPLATE RENDER
 	e.GET("/health", handlers.Health)
 
 	e.Static("/static", "web/static")
 
-	e.Logger.Fatal(e.Start(":8000"))
+	e.Logger.Fatal(e.Start(":8001"))
 }
